@@ -41,9 +41,7 @@ class UserRegister extends Controller
     public function pregister(Request $request)
     {
         $request->validate([
-            'firstname'     => 'required|string|max:255',
-            'lastname'      => 'required|string|max:255',
-            'middlename'    => 'required|string|max:255',
+            'fullname'      => 'required|string|max:255',
             'email'         => 'required|string|max:255|unique:users',
             'age'           => 'required|integer|max:255',
             'gender'        => 'required|string|max:12',
@@ -52,7 +50,7 @@ class UserRegister extends Controller
             'state'         => 'required|string|max:55',
             'referral'      => 'required|string|max:55',
             'username'      => 'required|string|max:55',
-            'password'      => ['required', 'string', 'max:255', 'min:8', Rules\Password::defaults()],
+            'password'      => ['required', 'confirm', 'string', 'max:255', 'min:8', Rules\Password::defaults()],
         ]);
 
         // Avatar::create($fullname)->toBase64(); Avatar::create($fullname)->save(storage_path(path: 'Avatars/avatar-' . $request->lastname[0] . $request->firstname . '.png'));
@@ -62,9 +60,7 @@ class UserRegister extends Controller
 
 
         $Create                 = new User();
-        $Create->firstname      = $request->firstname;
-        $Create->lastname       = $request->lastname;
-        $Create->middlename     = $request->middlename;
+        $Create->fullname      = $request->fullname;
         $Create->email          = $request->email;
         $Create->age            = $request->age;
         $Create->gender         = $request->gender;
@@ -127,7 +123,7 @@ class UserRegister extends Controller
 
         $actCode = ActivationCode::where('activationCode', $request->activationCode)->where('status', 1)->first();
 
-        if ($actCode->count('id') > 0) {
+        if ( !empty($actCode) ) {
             $userId = $request->user_id;
 
             $activateUser = User::whereId($userId)

@@ -31,20 +31,22 @@
                                 @csrf
 
                                 <div id="error_result">
-                                    @if(Session::get('success'))
-                                        <div class="alert alert-success alert-dismissible fade show text-dark" role="alert">
+                                    @if (Session::get('success'))
+                                        <div class="alert alert-success alert-dismissible fade show text-dark"
+                                            role="alert">
                                             <strong>Success!</strong> {{ Session::get('success') }}
                                         </div>
                                     @endif
-                                    @if(Session::get('fail'))
-                                    <div class="alert alert-danger text-danger alert-dismissible fade show" role="alert">
-                                        <strong>Oh Oops!</strong> {{ Session::get('fail') }}
-                                    </div>
+                                    @if (Session::get('fail'))
+                                        <div class="alert alert-danger text-danger alert-dismissible fade show"
+                                            role="alert">
+                                            <strong>Oh Oops!</strong> {{ Session::get('fail') }}
+                                        </div>
                                     @endif
                                 </div>
-                                
+
                                 <div class="form-group">
-                                    <label>First Name</label>
+                                    <label>Full Name</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
@@ -52,91 +54,90 @@
                                             </span>
                                         </div>
                                         <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Firstname" name="firstname" value="{{ old('firstname') }}">
+                                            name="fullname" value="{{ old('fullname') }}">
                                     </div>
-                                    @error('firstname')
+                                    @error('fullname')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-email-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="email" class="form-control form-control-lg border-left-0"
+                                                    placeholder="Email" name="email" value="{{ old('email') }}">
+                                            </div>
+                                            @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Lastname" name="lastname" value="{{ old('lastname') }}">
                                     </div>
-                                    @error('lastname')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-account-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control form-control-lg border-left-0"
+                                                    placeholder="Username" name="username"
+                                                    value="{{ old('username') }}">
+                                            </div>
+                                            @error('username')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Middle Name</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Age</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-account-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="number" min="18"
+                                                    class="form-control form-control-lg border-left-0" placeholder="age"
+                                                    name="age" value="{{ old('age') }}">
+                                            </div>
+                                            @error('age')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Middlename" name="middlename" value="{{ old('middlename') }}">
                                     </div>
-                                    @error('middlename')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>Email Address</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-account-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <select name="gender"
+                                                    class="form-control form-control-lg border-left-0">
+                                                    <option value="" selected> -- Gender -- </option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                            @error('gender')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="email" class="form-control form-control-lg border-left-0"
-                                            placeholder="Email Address" name="email" value="{{ old('email') }}">
                                     </div>
-                                    @error('email')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>Age</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <input type="number" min="18"
-                                            class="form-control form-control-lg border-left-0" placeholder="age"
-                                            name="age" value="{{ old('age') }}">
-                                    </div>
-                                    @error('age')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>Gender</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <select name="gender" class="form-control form-control-lg border-left-0" >
-                                            <option value="" selected> -- Gender -- </option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
-                                        </select>
-                                    </div>
-                                    @error('gender')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label> Profession</label>
@@ -162,75 +163,93 @@
                                             </span>
                                         </div>
                                         <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Referal-Code" name="referral" value="{{ old('referral') }}">
+                                            placeholder="Referal-Code" name="referral"
+                                            value="{{ old('referral') }}">
                                     </div>
                                     @error('referral')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Country of Residence</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                {{-- Country section --}}
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Country of Residence</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-account-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control form-control-lg border-left-0" name="country"
+                                                    value="{{ old('country') }}">
+                                            </div>
+                                            @error('country')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Country" name="country" value="{{ old('country') }}">
                                     </div>
-                                    @error('country')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>State of Residence</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-account-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control form-control-lg border-left-0" name="state"
+                                                    value="{{ old('state') }}">
+                                            </div>
+                                            @error('state')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
-
-                                <div class="form-group">
-                                    <label>State of Residence</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                {{-- Password section --}}
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-lock-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password"
+                                                    class="form-control form-control-lg border-left-0"
+                                                    id="exampleInputPassword" placeholder="***" name="password">
+                                            </div>
+                                            @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="State" name="state" value="{{ old('state') }}">
                                     </div>
-                                    @error('state')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-account-outline text-primary"></i>
-                                            </span>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Confirm Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <span class="input-group-text bg-transparent border-right-0">
+                                                        <i class="mdi mdi-lock-outline text-primary"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password"
+                                                    class="form-control form-control-lg border-left-0"
+                                                    id="exampleInputPasswordConfirm" placeholder="***"
+                                                    name="password_confirmation">
+                                            </div>
+                                            @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0"
-                                            placeholder="Username" name="username" value="{{ old('username') }}">
                                     </div>
-                                    @error('username')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-lock-outline text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0"
-                                            id="exampleInputPassword" placeholder="Password" name="password">
-                                    </div>
-                                    @error('password')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="mb-4">
