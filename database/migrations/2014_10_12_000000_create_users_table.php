@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('username');
             $table->string('password');
+            $table->string('user_type')->default(0);
             $table->string('accountNumber')->nullable();
             $table->string('accountName')->nullable();
             $table->string('bankName')->nullable();

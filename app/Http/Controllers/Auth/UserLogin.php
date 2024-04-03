@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 
 class UserLogin extends Controller
 {
@@ -17,6 +18,7 @@ class UserLogin extends Controller
         return view('user.auth.login');
     }
 
+
     public function login(Request $request)
     {
         $request->validate([
@@ -24,20 +26,22 @@ class UserLogin extends Controller
             'password' => 'required',
         ]);
 
-        $User = User::where('username', $request->username)->first();
+        $user = User::where('username', $request->username)
+                     ->orWhere('email', $request->username)
+                     ->first();
 
-        if (!empty($User)) {
+        if ($user && Auth::attempt($request->only('username', 'password'))) {
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
 
-            if (!Auth::attempt($request->only('username', 'password'))) {
-                return back()->with('fail', 'Invalid Username Or Password');
-            }
-
-            $user = Auth::user();
-
-            return redirect('home')->with(['message' => 'You are welcome home']);
         } else {
-
             return back()->with('fail', 'Invalid Login Details');
         }
+    }
+
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
     }
 }
